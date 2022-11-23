@@ -1,0 +1,19 @@
+version: "3"
+services:
+
+  elasticsearch:
+    image: fuqmy72/elasticsearch-ko:0.0.1
+    container_name: elasticsearch
+    ports:
+      - 9200:9200
+    environment:
+      - discovery.type=single-node
+
+  kibana:
+    image: kibana:7.9.2
+    container_name: kibana
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
